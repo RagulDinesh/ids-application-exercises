@@ -1,0 +1,167 @@
+---
+title: "Visualizing Starwars characters"
+author: "Simon Taylor"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    fig_height: 4
+    fig_width: 9
+---
+
+```{r load-packages, include=FALSE}
+library(tidyverse)
+```
+
+### Glimpse at the starwars data frame.
+
+The `starwars` data set contains information about many different characters from the Star Wars films.  
+
+```{r glimpse-starwars}
+glimpse(starwars)
+```
+
+
+We can see that the data set consists of `r nrow(starwars)` characters, with data collected across `r ncol(starwars)` different variables.
+
+### 1. Create a data visualisation that shows the relationship between the height and the mass of the characters.
+
+Both height and weight are numerical variables, so the best type of data visualisation to illustrate this relationship is a scatter plot. This can be created by adding a `geom_point()` layer.
+
+```{r scatterplot}
+ggplot(data = starwars, 
+       mapping = aes(x = height, 
+                     y = mass)) + 
+  geom_point()
+```
+
+What do you see in this data visualisation? 
+
+Do you notice the outlying point at around 175cm in height and 1300kg in mass, could this be an error in the data set? Let's take a closer look at the data. On the console (not in your R Markdown document) type `view(starwars)` to see a spreadsheet of the data. (Note, you may need to run `library(tidyverse)` on the console first). Sort the `mass` variable in decreasing order. The character with the largest mass is `Jabba Desilijic Tiure`, or (Jabba the Hutt)[https://en.wikipedia.org/wiki/Jabba_the_Hutt], who is a large and heavy slug-like creature. So no, there does not appear to be an error in the data!
+
+
+Let's now zoom into the data visualisation to see the relationship between height and mass amongst the other characters.
+
+```{r scatterplot_zoom}
+ggplot(data = starwars, 
+       mapping = aes(x = height, 
+                     y = mass)) + 
+  geom_point() + 
+  coord_cartesian(y = c(0, 160))
+```
+
+How would you describe the relationship between the two variables?
+
+
+### 2. Modify the scatter plot to change the colour of the points.
+
+First, lets make all of the points blue...
+
+```{r scatterplot_blue}
+ggplot(data = starwars, 
+       mapping = aes(x = height, 
+                     y = mass)) + 
+  geom_point(
+    colour = "blue"
+  ) + 
+  coord_cartesian(y = c(0, 160))
+```
+
+R has a long list of colours that you can call by name, some of the common colours are `"black"`, `"red"`, `"green"`, `"blue"`, `"yellow"`, `"magenta"`, `"cyan"` and `"grey"`. However it is difficult to find the name of the specific colour you want, so R also understands the hexadecimal coding for colours. For example, `#f36ddf` is the hexadecimal code for a nice shade of pink.
+
+Go the the [Color codes website](https://htmlcolorcodes.com/color-picker/) and find a colour that you like and make this the colour of the points in the scatter plot.
+
+
+We can use colour to examine how the relationship between character height and weight may vary depending on another variable. For this we instead define the colour in the `aes`thetics. For example, we can use colour to indicate the character's gender.
+
+
+```{r scatterplot_gender}
+ggplot(data = starwars, 
+       mapping = aes(x = height, 
+                     y = mass,
+                     colour = gender)) + 
+  geom_point() + 
+  coord_cartesian(y = c(0, 160))
+```
+
+
+Change the above code so that points are coloured based on the character's `species`. What is the problem with this data visualisation?
+
+What happens to the data visualisation if you instead map character's gender to `shape`?
+
+What happens if you add `size = birth_year` into the aesthetics function?
+
+What happens if you specify the colour in *both* the `aes()` function *and* the `geom_point()` function?
+
+### 3. Add axis labels and a title
+
+Remember that a data visualisation is just a pretty picture unless you know what the visualisation is about, so it is important to add axis labels and a title. 
+
+Edit the following code with a suitable title and axis labels.
+
+```{r scatterplot-labels}
+ggplot(data = starwars, 
+       mapping = aes(x = height, 
+                     y = mass, 
+                     color = gender)) +
+  geom_point() + 
+  coord_cartesian(y = c(0, 160)) +
+  labs(
+    #title = "___",
+    #x = "___", 
+    #y = "___"
+    )
+```
+
+We can even change the title of the colour legend. In the above code add `colour = "Gender"` into the `labs()` function.
+
+
+
+
+
+### 4. Pick a single categorical variable and make a bar plot.
+
+Now it is over to you to explore what other structures and relationships exist within the `starwars` data set.
+
+(NOTE: A little bit of code is provided below to help you get started with the structure. However, this code is currently not proper R code and won't run. As such, the code chunk is set to not e evaluated with `eval = FALSE`. Once you have written valid R code for your visualisation, set `eval = TRUE`, or remove this argument from the curly brackets, and knit your document.)
+
+
+```{r barplot, eval = FALSE}
+ggplot(data = starwars, 
+       mapping = aes(___)) +
+  geom___()
+```
+
+
+What features do you see in the visualisation, and what does it tell you about the variable you have selected?
+
+
+
+### 5. Pick a single numerical variable and make a histogram.
+
+(This time no starter code is provided, you're on your own!)
+
+```{r histogram}
+# write your code here!
+```
+
+What features do you see in the visualisation, and what does it tell you about the variable you have selected?
+
+
+
+### 6. Pick a numerical variable and a categorical variable.  
+
+Make a visualisation to examine the relationship between two different types variables. You choose the style of the visualisation, whether that be a box plot, a violin plot, a bar chart or something different. 
+
+```{r num-cat}
+# write your code here!
+```
+
+Interpret what your data visualisation says about the relationship (if there is one) between the numerical and categorical variable you have chosen?
+
+### 7. Go wild! 
+
+Copy the code of one of the data visualisations above into the R code chunk below. Add as many different features to the visualisation that you can to make is as ugly and as incomprehensible as possible!
+
+```{r ugly}
+# write your code here!
+```
