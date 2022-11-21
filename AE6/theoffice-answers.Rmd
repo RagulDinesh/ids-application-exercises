@@ -31,7 +31,7 @@ We will
 - perform cross validation
 - make predictions
 
-Note: The episodes listed in `theoffice` don't match the ones listed in the data we used in the [cross validation lesson](https://ids-s1-20.github.io/slides/week-10/w10-d02-cross-validation/w10-d02-cross-validation.html).
+Note: The episodes listed in `theoffice` don't match the ones listed in the data we used in the lectures.
 
 ```{r}
 theoffice %>%
@@ -157,7 +157,7 @@ office_fit_rs <- office_wflow %>%
 collect_metrics(office_fit_rs)
 ```
 
-### Exercise 10 - Use your model to make predictions for the testing data and calculate the RMSE. Also use the model developed in the [cross validation lesson](https://ids-s1-20.github.io/slides/week-10/w10-d02-cross-validation/w10-d02-cross-validation.html) to make predictions for the testing data and calculate the RMSE as well. Which model did a better job in predicting IMDB scores for the testing data?
+### Exercise 10 - Use your model to make predictions for the testing data and calculate the RMSE. Also use the model developed in the cross validation lecture to make predictions for the testing data and calculate the RMSE as well. Which model did a better job in predicting IMDB scores for the testing data?
 
 #### New model
 
