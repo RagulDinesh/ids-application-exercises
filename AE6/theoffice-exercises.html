@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2022-10-18" />
+<meta name="date" content="2022-11-21" />
 
 <title>The Office</title>
 
@@ -298,23 +298,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -356,15 +350,16 @@ display: none;
 
 
 <h1 class="title toc-ignore">The Office</h1>
-<h4 class="date">2022-10-18</h4>
+<h4 class="date">2022-11-21</h4>
 
 </div>
 
 
 <pre class="r"><code>library(tidyverse)
 library(tidymodels)
-library(schrute)
-library(lubridate)</code></pre>
+library(schrute)</code></pre>
+<pre><code>## Warning: package &#39;schrute&#39; was built under R version 4.2.2</code></pre>
+<pre class="r"><code>library(lubridate)</code></pre>
 <p>Use <code>theoffice</code> data from the <a href="https://bradlindblad.github.io/schrute/"><strong>schrute</strong></a>
 package to predict IMDB scores for episodes of The Office.</p>
 <pre class="r"><code>glimpse(theoffice)</code></pre>
@@ -393,8 +388,7 @@ package to predict IMDB scores for episodes of The Office.</p>
 <li>make predictions</li>
 </ul>
 <p>Note: The episodes listed in <code>theoffice</code> don’t match the
-ones listed in the data we used in the <a href="https://ids-s1-20.github.io/slides/week-10/w10-d02-cross-validation/w10-d02-cross-validation.html">cross
-validation lesson</a>.</p>
+ones listed in the data we used in the lectures.</p>
 <pre class="r"><code>theoffice %&gt;%
   distinct(season, episode)</code></pre>
 <pre><code>## # A tibble: 186 × 2
@@ -465,10 +459,10 @@ ___(office_fit_rs)</code></pre>
 ## 2: folds &lt;- vfold_cv(__
 ##                       ^</code></pre>
 </div>
-<div id="exercise-10---use-your-model-to-make-predictions-for-the-testing-data-and-calculate-the-rmse.-also-use-the-model-developed-in-the-cross-validation-lesson-to-make-predictions-for-the-testing-data-and-calculate-the-rmse-as-well.-which-model-did-a-better-job-in-predicting-imdb-scores-for-the-testing-data" class="section level3">
+<div id="exercise-10---use-your-model-to-make-predictions-for-the-testing-data-and-calculate-the-rmse.-also-use-the-model-developed-in-the-cross-validation-lecture-to-make-predictions-for-the-testing-data-and-calculate-the-rmse-as-well.-which-model-did-a-better-job-in-predicting-imdb-scores-for-the-testing-data" class="section level3">
 <h3>Exercise 10 - Use your model to make predictions for the testing
-data and calculate the RMSE. Also use the model developed in the <a href="https://ids-s1-20.github.io/slides/week-10/w10-d02-cross-validation/w10-d02-cross-validation.html">cross
-validation lesson</a> to make predictions for the testing data and
+data and calculate the RMSE. Also use the model developed in the cross
+validation lecture to make predictions for the testing data and
 calculate the RMSE as well. Which model did a better job in predicting
 IMDB scores for the testing data?</h3>
 <div id="new-model" class="section level4">
